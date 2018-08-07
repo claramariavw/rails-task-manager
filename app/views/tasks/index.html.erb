@@ -1,0 +1,20 @@
+<div class="container-index">
+<h1>Tasks</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <form>
+     <li>
+      <% if task.completed == true %>
+       <input type="checkbox" name="check" checked = "<%=task.completed%>" ><label><%=link_to task.title, task_path(task)%></label> | <%= link_to "Edit", edit_task_path(task) %> | <%= link_to "Destroy", task_path(task), method: :delete %></li>
+       <%else%>
+       <input type="checkbox" name="check"><label><%=link_to task.title, task_path(task)%> </label> | <%= link_to "Edit", edit_task_path(task) %> | <%= link_to "Delete", task_path(task), method: :delete, data:{confirm: "Detlete - Are you sure?"}%></li>
+       <%end%>
+
+    </form>
+  <%end%>
+</ul>
+
+<p> <%= link_to "Create task", new_task_path %> </p>
+
+</div>
